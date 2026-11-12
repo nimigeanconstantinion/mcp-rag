@@ -1,5 +1,7 @@
 package mycode.onlineshopspring.mcp;
 
+import mycode.onlineshopspring.customer.service.UserQuerryService;
+import mycode.onlineshopspring.mcp.dtos.OrdersView;
 import mycode.onlineshopspring.mcp.dtos.ProductView;
 import mycode.onlineshopspring.products.service.ProductsQuerryService;
 import org.springaicommunity.mcp.annotation.McpTool;
@@ -11,9 +13,11 @@ import java.util.List;
 @Component
 public class ShopTools {
     ProductsQuerryService productsQuerryService;
+    UserQuerryService userQuerryService;
 
-    public ShopTools(ProductsQuerryService productsQuerryService) {
+    public ShopTools(ProductsQuerryService productsQuerryService, UserQuerryService userQuerryService) {
         this.productsQuerryService=productsQuerryService;
+        this.userQuerryService=userQuerryService;
     }
     @McpTool(name = "search_products",
             description = "Searches products by text in the name, sku or category (product names are in Romanian). An empty query returns all products. Returns sku, name, category, price in lei, stock and description.",
@@ -21,5 +25,13 @@ public class ShopTools {
     public List<ProductView> searchProducts(
             @McpToolParam(description = "Text to search for, e.g. a sku like LAP-002, a category like Audio, or part of a name", required = false) String query) {
         return productsQuerryService.searchProducts(query).stream().map(ProductView::from).toList();
+    }
+
+    @McpTool(name = "customer_orders",
+            description = "Returns the orders of the customer with the given email address, newest first. Each order has its id, date, status (PENDING, SHIPPED, DELIVERED, CANCELLED), amount in lei, shipping address and the ordered products (sku, name, quantity, unit price in lei). Fails if no customer has that email.",
+            annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
+    public OrdersView customerOrders(
+            @McpToolParam(description = "Email address of the customer, e.g. ana.pop@example.com", required = true) String email) {
+        return OrdersView.from(userQuerryService.findCustomerByEmail(email.trim()));
     }
 }

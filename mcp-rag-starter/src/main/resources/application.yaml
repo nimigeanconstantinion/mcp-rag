@@ -25,6 +25,12 @@ spring:
     open-in-view: false
   liquibase:
     enabled: false
+  ai:
+    mcp:
+      server:
+        protocol: STREAMABLE
+        name: online-shop
+        version: 0.0.1
 
 app:
   seed:
@@ -50,3 +56,5 @@ springdoc:
     path: /swagger-ui.html
     operations-sorter: method
     tags-sorter: alpha
+
+
