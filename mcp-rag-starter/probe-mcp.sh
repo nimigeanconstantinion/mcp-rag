@@ -20,7 +20,7 @@ curl "${H[@]}" "${S[@]}" -o /dev/null -X POST "$URL" \
 
 if [ $# -eq 0 ]; then
   BODY='{"jsonrpc":"2.0","id":2,"method":"tools/list"}'
-  FILTER='.result.tools[] | "\(.name)  readOnly=\(.annotations.readOnlyHint)  \(.description)"'
+  FILTER='if .error then .error else "\(.result.tools | length) tools", (.result.tools[] | "\(.name)  readOnly=\(.annotations.readOnlyHint)  \(.description)") end'
 else
   TOOL=$1
   ARGS=${2:-{\}}

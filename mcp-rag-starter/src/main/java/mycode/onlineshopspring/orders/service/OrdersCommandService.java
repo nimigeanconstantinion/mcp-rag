@@ -9,5 +9,6 @@ public interface OrdersCommandService {
     OrdersResponse createOrder(UUID customerId, OrdersDto dto);
     OrdersResponse createOrderForCurrentUser(String email, OrdersDto dto);
     OrdersResponse updateOrderStatus(UUID id, String status);
+    OrdersResponse cancelOrder(UUID id);
     void deleteOrder(UUID id);
 }

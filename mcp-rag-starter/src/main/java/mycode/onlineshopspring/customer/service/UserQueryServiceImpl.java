@@ -50,4 +50,10 @@ public class UserQueryServiceImpl implements UserQuerryService {
         Customer customer = customerRepository.findByUserEmail(email).orElseThrow(CustomerDoesntExistException::new);
         return mapper.mapCustomerToCustomerResponse(customer);
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<CustomerResponse> searchCustomers(String text) {
+        return mapper.mapCustomerListToResponseList(customerRepository.search(text.trim()));
+    }
 }

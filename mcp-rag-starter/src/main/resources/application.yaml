@@ -33,6 +33,11 @@ spring:
         version: 0.0.1
 
 app:
+  rag:
+    enabled: ${RAG_ENABLED:false}
+    model-uri: ${RAG_MODEL_URI:https://huggingface.co/Xenova/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/onnx/model_quantized.onnx}
+    tokenizer-uri: ${RAG_TOKENIZER_URI:https://huggingface.co/Xenova/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer.json}
+    cache-dir: ${RAG_CACHE_DIR:${java.io.tmpdir}/shop-onnx-cache}
   seed:
     enabled: ${SEED_ENABLED:true}
     demo-data: ${SEED_DEMO_DATA:true}

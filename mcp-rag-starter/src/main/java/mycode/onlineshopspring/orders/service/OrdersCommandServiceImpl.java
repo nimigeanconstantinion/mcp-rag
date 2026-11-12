@@ -5,6 +5,7 @@ import mycode.onlineshopspring.auth.customer.Customer;
 import mycode.onlineshopspring.auth.customer.CustomerRepository;
 import mycode.onlineshopspring.exceptions.CustomerDoesntExistException;
 import mycode.onlineshopspring.exceptions.OrderDoesntExistException;
+import mycode.onlineshopspring.exceptions.OrderStatusNotAllowedException;
 import mycode.onlineshopspring.exceptions.ProductDoesntExistException;
 import mycode.onlineshopspring.mappers.OnlineShopMapper;
 import mycode.onlineshopspring.orderDetails.dto.OrderDetailsDto;
@@ -68,6 +69,17 @@ public class OrdersCommandServiceImpl implements OrdersCommandService {
         order.setOrderStatus(status);
         Orders saved = repository.save(order);
         return mapper.mapOrdersToOrdersResponse(saved);
+    }
+
+    @Transactional
+    @Override
+    public OrdersResponse cancelOrder(UUID id) {
+        Orders order = repository.findById(id).orElseThrow(OrderDoesntExistException::new);
+        if (!"PENDING".equals(order.getOrderStatus())) {
+            throw new OrderStatusNotAllowedException(
+                    "Only PENDING orders can be cancelled. Order " + id + " is " + order.getOrderStatus() + ".");
+        }
+        return updateOrderStatus(id, "CANCELLED");
     }
 
     @Transactional
