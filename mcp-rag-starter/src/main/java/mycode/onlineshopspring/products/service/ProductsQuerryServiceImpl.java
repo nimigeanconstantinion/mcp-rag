@@ -43,4 +43,10 @@ public class ProductsQuerryServiceImpl implements ProductsQuerryService {
         Products product = productsRepository.findById(id).orElseThrow(ProductDoesntExistException::new);
         return mapper.mapProductsToProductsResponse(product);
     }
+    @Override
+    @Transactional(readOnly = true)
+    public List<ProductsResponse> searchProducts(String text) {
+        String query = text == null ? "" : text.trim();
+        return mapper.mapProductsListToResponseList(productsRepository.search(query));
+    }
 }
