@@ -3,22 +3,27 @@ package mycode.onlineshopspring.mcp;
 import mycode.onlineshopspring.customer.service.UserQuerryService;
 import mycode.onlineshopspring.mcp.dtos.OrdersView;
 import mycode.onlineshopspring.mcp.dtos.ProductView;
+import mycode.onlineshopspring.orders.service.OrdersQuerryService;
 import mycode.onlineshopspring.products.service.ProductsQuerryService;
 import org.springaicommunity.mcp.annotation.McpTool;
 import org.springaicommunity.mcp.annotation.McpToolParam;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 public class ShopTools {
     ProductsQuerryService productsQuerryService;
+    OrdersQuerryService ordersQuerryService;
     UserQuerryService userQuerryService;
 
-    public ShopTools(ProductsQuerryService productsQuerryService, UserQuerryService userQuerryService) {
-        this.productsQuerryService=productsQuerryService;
-        this.userQuerryService=userQuerryService;
+    public ShopTools(ProductsQuerryService productsQuerryService, UserQuerryService userQuerryService,OrdersQuerryService ordersQuerryService ) {
+        this.productsQuerryService = productsQuerryService;
+        this.userQuerryService = userQuerryService;
+        this.ordersQuerryService=ordersQuerryService;
     }
+
     @McpTool(name = "search_products",
             description = "Searches products by text in the name, sku or category (product names are in Romanian). An empty query returns all products. Returns sku, name, category, price in lei, stock and description.",
             annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
@@ -34,4 +39,18 @@ public class ShopTools {
             @McpToolParam(description = "Email address of the customer, e.g. ana.pop@example.com", required = true) String email) {
         return OrdersView.from(userQuerryService.findCustomerByEmail(email.trim()));
     }
+
+    @McpTool(name = "order_by_status",
+            description = "Returns the orders by status  (PENDING, SHIPPED, DELIVERED, CANCELLED).",
+            annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
+    public List<OrdersView> byStatus(
+            @McpToolParam(description = "PENDING, SHIPPED, ...",
+            required = true) String status,
+            @McpToolParam(description = "The shipment id",
+                                               required = false) UUID shipmentId) {
+        return List<OrdersView>.from();
+
+
+    }
+
 }

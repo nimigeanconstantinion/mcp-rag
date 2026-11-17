@@ -10,4 +10,5 @@ public interface OrdersQuerryService {
     OrdersResponse findOrderById(UUID id);
     OrdersListResponse findOrdersByCustomerId(UUID customerId, int page, int size);
     OrdersListResponse findOrdersByEmail(String email, int page, int size);
+    OrdersListResponse findOrdersByStatus(String status,int page, int size);
 }
