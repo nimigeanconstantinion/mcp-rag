@@ -26,5 +26,5 @@ public interface OrdersRepository extends JpaRepository<Orders, UUID> {
     Optional<Orders> findById(UUID id);
 
     @EntityGraph(attributePaths = {"orderDetailsSet", "orderDetailsSet.product"})
-    Page<Orders> findByOrderStatus(String status,Pageable pageable);
+    List<Orders> findByOrderStatus(String status);
 }

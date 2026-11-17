@@ -72,10 +72,10 @@ public class OrdersQuerryServiceImpl implements OrdersQuerryService {
 
     @Override
     @Transactional(readOnly = true)
-    public OrdersListResponse findOrdersByStatus(String status,int page,int size) {
-        Pageable pageable = PaginationUtils.sanitize(page, size, Sort.by("id"));
-        Page<Orders> ordersPage = ordersRepository.findByOrderStatus(status,pageable);
-        return toListResponse(ordersPage);
+    public List<OrdersResponse> findOrdersByStatus(String status) {
+//        Page<Orders> ordersPage = ordersRepository.findByOrderStatus(status);
+        List<OrdersResponse> lista= mapper.mapOrdersListToResponseList(ordersRepository.findByOrderStatus(status));
+        return lista;
 
     }
 }

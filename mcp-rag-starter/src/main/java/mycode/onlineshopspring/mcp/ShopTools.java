@@ -3,6 +3,7 @@ package mycode.onlineshopspring.mcp;
 import mycode.onlineshopspring.customer.service.UserQuerryService;
 import mycode.onlineshopspring.mcp.dtos.OrdersView;
 import mycode.onlineshopspring.mcp.dtos.ProductView;
+import mycode.onlineshopspring.orders.dto.OrdersResponse;
 import mycode.onlineshopspring.orders.service.OrdersQuerryService;
 import mycode.onlineshopspring.products.service.ProductsQuerryService;
 import org.springaicommunity.mcp.annotation.McpTool;
@@ -43,13 +44,12 @@ public class ShopTools {
     @McpTool(name = "order_by_status",
             description = "Returns the orders by status  (PENDING, SHIPPED, DELIVERED, CANCELLED).",
             annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
-    public List<OrdersView> byStatus(
+    public List<OrdersResponse> byStatus(
             @McpToolParam(description = "PENDING, SHIPPED, ...",
             required = true) String status,
             @McpToolParam(description = "The shipment id",
                                                required = false) UUID shipmentId) {
-        return List<OrdersView>.from();
-
+        return ordersQuerryService.findOrdersByStatus(status);
 
     }
 
