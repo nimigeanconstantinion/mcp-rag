@@ -15,7 +15,7 @@
 | Local run, no database needed | `mvn spring-boot:run -Dspring-boot.run.profiles=h2` (in-memory H2) |
 | Local run on MySQL | `mvn spring-boot:run` (needs MySQL on `localhost:3307`, or `DB_URL`/`DB_USERNAME`/`DB_PASSWORD`) |
 | Login for a token | `POST /api/auth/login` with `admin@shop.com` / `admin1234` |
-| Probe the MCP server | `bash probe-mcp.sh [tool '{json}']` (another server: `MCP_URL=...`) |
+| Probe the MCP server | `bash probe-mcp.sh [tool '{json}']` (another server: `MCP_URL=...`, with a token: `MCP_TOKEN=...`) |
 
 Tests run on H2 (`src/test/resources/`), no MySQL needed. Swagger: `/swagger-ui.html`, port `8082`.
 
@@ -26,7 +26,8 @@ Tests run on H2 (`src/test/resources/`), no MySQL needed. Swagger: `/swagger-ui.
 | `pom.xml` | `spring-ai-bom` 1.1.8, `spring-ai-starter-mcp-server-webmvc` |
 | `application.yaml` | `spring.ai.mcp.server.protocol: STREAMABLE`, server name and version |
 | `auth/security/SecurityConfig.java` | `/mcp` and `/mcp/**` in `PUBLIC_ENDPOINTS`; the REST API stays on JWT |
-| `.mcp.json` | the `shop` server for Claude Code: `http://localhost:8082/mcp` |
+| `auth/security/McpTokenFilter.java` | if `MCP_API_TOKEN` (`app.mcp.api-token`) is set, `/mcp` needs `Authorization: Bearer <token>`, else 401 JSON; empty = open |
+| `.mcp.json` | the `shop` server for Claude Code: `http://localhost:8082/mcp`, sends `Bearer ${MCP_API_TOKEN}` |
 
 ## Data
 

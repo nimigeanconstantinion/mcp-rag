@@ -2,7 +2,17 @@
   "mcpServers": {
     "shop": {
       "type": "http",
-      "url": "http://localhost:8082/mcp"
+      "url": "http://localhost:8082/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MCP_API_TOKEN:-}"
+      }
+    },
+    "shop": {
+      "type": "http",
+      "url": "http://localhost:8082/mcp",
+      "headers": {
+         "Authorization": "Bearer ${SHOP_MCP_TOKEN}" 
+      }
     }
   }
 }

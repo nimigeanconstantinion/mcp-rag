@@ -1,0 +1,109 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< mycode:OnlineShopSpring >-----------------------
+[INFO] Building OnlineShopSpring 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.5.7:run (default-cli) > test-compile @ OnlineShopSpring >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ OnlineShopSpring ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 7 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ OnlineShopSpring ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ OnlineShopSpring ---
+[INFO] Copying 2 resources from src\test\resources to target\test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ OnlineShopSpring ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] <<< spring-boot:3.5.7:run (default-cli) < test-compile @ OnlineShopSpring <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.5.7:run (default-cli) @ OnlineShopSpring ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.5.7)
+
+2026-11-19T17:48:11.256+02:00  INFO 8600 --- [           main] m.o.OnlineShopSpringApplication          : Starting OnlineShopSpringApplication using Java 21.0.6 with PID 8600 (C:\Projects\MCP-RAG\mcp-rag-starter\target\classes started by nelus in C:\Projects\MCP-RAG\mcp-rag-starter)
+2026-11-19T17:48:11.261+02:00  INFO 8600 --- [           main] m.o.OnlineShopSpringApplication          : The following 1 profile is active: "h2"
+2026-11-19T17:48:13.212+02:00  INFO 8600 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-11-19T17:48:13.782+02:00  INFO 8600 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 548 ms. Found 8 JPA repository interfaces.
+2026-11-19T17:48:15.017+02:00  WARN 8600 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ai.mcp.server.common.autoconfigure.annotations.McpServerAnnotationScannerAutoConfiguration' of type [org.springframework.ai.mcp.server.common.autoconfigure.annotations.McpServerAnnotationScannerAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [serverAnnotatedMethodBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-11-19T17:48:15.020+02:00  WARN 8600 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'serverAnnotatedBeanRegistry' of type [org.springframework.ai.mcp.server.common.autoconfigure.annotations.McpServerAnnotationScannerAutoConfiguration$ServerMcpAnnotatedBeans] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [serverAnnotatedMethodBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-11-19T17:48:15.044+02:00  WARN 8600 --- [           main] trationDelegate$BeanPostProcessorChecker : Bean 'spring.ai.mcp.server.annotation-scanner-org.springframework.ai.mcp.server.common.autoconfigure.annotations.McpServerAnnotationScannerProperties' of type [org.springframework.ai.mcp.server.common.autoconfigure.annotations.McpServerAnnotationScannerProperties] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [serverAnnotatedMethodBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-11-19T17:48:15.796+02:00  INFO 8600 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8082 (http)
+2026-11-19T17:48:15.851+02:00  INFO 8600 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-11-19T17:48:15.851+02:00  INFO 8600 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.48]
+2026-11-19T17:48:16.079+02:00  INFO 8600 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-11-19T17:48:16.079+02:00  INFO 8600 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4739 ms
+2026-11-19T17:48:16.489+02:00  INFO 8600 --- [           main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-11-19T17:48:16.646+02:00  INFO 8600 --- [           main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.33.Final
+2026-11-19T17:48:16.747+02:00  INFO 8600 --- [           main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-11-19T17:48:17.509+02:00  INFO 8600 --- [           main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-11-19T17:48:17.601+02:00  INFO 8600 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool - Starting...
+2026-11-19T17:48:18.157+02:00  INFO 8600 --- [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool - Added connection conn0: url=jdbc:h2:mem:online_shop user=SA
+2026-11-19T17:48:18.159+02:00  INFO 8600 --- [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool - Start completed.
+2026-11-19T17:48:18.248+02:00  WARN 8600 --- [           main] org.hibernate.orm.deprecation            : HHH90000025: H2Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-11-19T17:48:18.307+02:00  INFO 8600 --- [           main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-11-19T17:48:21.593+02:00  INFO 8600 --- [           main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-11-19T17:48:21.820+02:00  INFO 8600 --- [           main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-11-19T17:48:23.424+02:00  INFO 8600 --- [           main] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-11-19T17:48:25.394+02:00  INFO 8600 --- [           main] eAuthenticationProviderManagerConfigurer : Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2026-11-19T17:48:25.395+02:00  WARN 8600 --- [           main] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2026-11-19T17:48:28.761+02:00  INFO 8600 --- [           main] o.s.a.m.s.c.a.McpServerAutoConfiguration : Enable tools capabilities, notification: true
+2026-11-19T17:48:28.766+02:00  INFO 8600 --- [           main] o.s.a.m.s.c.a.McpServerAutoConfiguration : Registered tools: 5
+2026-11-19T17:48:28.766+02:00  INFO 8600 --- [           main] o.s.a.m.s.c.a.McpServerAutoConfiguration : Enable resources capabilities, notification: true
+2026-11-19T17:48:28.767+02:00  INFO 8600 --- [           main] o.s.a.m.s.c.a.McpServerAutoConfiguration : Enable resources templates capabilities, notification: true
+2026-11-19T17:48:28.767+02:00  INFO 8600 --- [           main] o.s.a.m.s.c.a.McpServerAutoConfiguration : Enable prompts capabilities, notification: true
+2026-11-19T17:48:28.769+02:00  INFO 8600 --- [           main] o.s.a.m.s.c.a.McpServerAutoConfiguration : Enable completions capabilities
+2026-11-19T17:48:29.474+02:00  INFO 8600 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8082 (http) with context path '/'
+2026-11-19T17:48:29.493+02:00  INFO 8600 --- [           main] m.o.OnlineShopSpringApplication          : Started OnlineShopSpringApplication in 19.122 seconds (process running for 19.879)
+2026-11-19T17:48:29.876+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: USER_READ
+2026-11-19T17:48:29.956+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: USER_WRITE
+2026-11-19T17:48:29.964+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: PRODUCT_READ
+2026-11-19T17:48:29.970+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: PRODUCT_WRITE
+2026-11-19T17:48:29.978+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: ORDER_READ
+2026-11-19T17:48:29.988+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: ORDER_WRITE
+2026-11-19T17:48:29.997+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: ORDER_DETAILS_READ
+2026-11-19T17:48:30.006+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: ORDER_DETAILS_WRITE
+2026-11-19T17:48:30.014+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: PERMISSION_READ
+2026-11-19T17:48:30.023+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded permission: PERMISSION_WRITE
+2026-11-19T17:48:30.326+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded admin account: admin@shop.com (password: admin1234)
+2026-11-19T17:48:30.574+02:00  INFO 8600 --- [           main] m.onlineshopspring.config.DataSeeder     : Seeded demo customer: customer@shop.com (password: customer1234)
+2026-11-19T17:48:31.455+02:00  INFO 8600 --- [           main] m.o.config.DemoShopSeeder                : Seeded demo shop: 8 products, 4 customers, 10 orders (customer password: customer1234)
+2026-11-19T17:48:36.909+02:00  INFO 8600 --- [nio-8082-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-11-19T17:48:36.909+02:00  INFO 8600 --- [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-11-19T17:48:36.914+02:00  INFO 8600 --- [nio-8082-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 5 ms
+2026-11-19T17:48:38.296+02:00  INFO 8600 --- [io-8082-exec-10] i.m.server.McpAsyncServer                : Client initialize request - Protocol: 2025-06-18, Capabilities: ClientCapabilities[experimental=null, roots=null, sampling=null, elicitation=null], Info: Implementation[name=probe-mcp, title=null, version=0.1]
+2026-11-19T17:48:53.154+02:00  INFO 8600 --- [nio-8082-exec-7] i.m.server.McpAsyncServer                : Client initialize request - Protocol: 2025-06-18, Capabilities: ClientCapabilities[experimental=null, roots=null, sampling=null, elicitation=null], Info: Implementation[name=probe-mcp, title=null, version=0.1]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  10:27 min
+[INFO] Finished at: 2026-11-19T17:58:31+02:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.springframework.boot:spring-boot-maven-plugin:3.5.7:run (default-cli) on project OnlineShopSpring: Process terminated with exit code: 1 -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
