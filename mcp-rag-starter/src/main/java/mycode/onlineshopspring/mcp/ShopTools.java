@@ -1,5 +1,6 @@
 package mycode.onlineshopspring.mcp;
 
+import mycode.onlineshopspring.customer.dto.CustomerResponse;
 import mycode.onlineshopspring.customer.service.UserQuerryService;
 import mycode.onlineshopspring.mcp.dtos.OrdersView;
 import mycode.onlineshopspring.mcp.dtos.ProductView;
@@ -50,6 +51,26 @@ public class ShopTools {
             @McpToolParam(description = "The shipment id",
                                                required = false) UUID shipmentId) {
         return ordersQuerryService.findOrdersByStatus(status);
+
+    }
+
+    @McpTool(name = "customers_by_name",
+            description = "Returns customenrs by name.",
+            annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
+    public List<CustomerResponse> customerbyName(
+            @McpToolParam(description = "Part of Name, ...",
+                    required = true) String name) {
+        return userQuerryService.searchCustomers(name);
+
+    }
+
+    @McpTool(name = "get_order_by_id",
+            description = "Returns oder by id.",
+            annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
+    public OrdersResponse customerbyName(
+            @McpToolParam(description = "order ID, ...",
+                    required = true) UUID id) {
+        return ordersQuerryService.findOrderById(id);
 
     }
 
