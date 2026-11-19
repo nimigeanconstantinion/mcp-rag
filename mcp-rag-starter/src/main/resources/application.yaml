@@ -29,15 +29,10 @@ spring:
     mcp:
       server:
         protocol: STREAMABLE
-        name: online-shop
-        version: 0.0.1
+        name: ${MCP_SERVER_NAME:online-shop}
+        version: ${MCP_SERVER_VERSION:0.0.1}
 
 app:
-  rag:
-    enabled: ${RAG_ENABLED:false}
-    model-uri: ${RAG_MODEL_URI:https://huggingface.co/Xenova/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/onnx/model_quantized.onnx}
-    tokenizer-uri: ${RAG_TOKENIZER_URI:https://huggingface.co/Xenova/paraphrase-multilingual-MiniLM-L12-v2/resolve/main/tokenizer.json}
-    cache-dir: ${RAG_CACHE_DIR:${java.io.tmpdir}/shop-onnx-cache}
   seed:
     enabled: ${SEED_ENABLED:true}
     demo-data: ${SEED_DEMO_DATA:true}
@@ -61,5 +56,3 @@ springdoc:
     path: /swagger-ui.html
     operations-sorter: method
     tags-sorter: alpha
-
-
