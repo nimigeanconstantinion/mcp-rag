@@ -11,4 +11,5 @@ public interface UserQuerryService {
     CustomerResponse findCustomerById(UUID id);
     CustomerResponse findCustomerByEmail(String email);
     List<CustomerResponse> searchCustomers(String text);
+    
 }

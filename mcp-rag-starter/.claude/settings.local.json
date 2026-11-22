@@ -1,5 +1,6 @@
 {
   "enabledMcpjsonServers": [
-    "shop"
+    "shop",
+    "shop-icode"
   ]
 }

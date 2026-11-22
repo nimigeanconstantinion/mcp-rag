@@ -1,0 +1,40 @@
+# Runs the published image from Docker Hub, no build needed.
+# Usage: copy this file and .env (from .env.example) to the server, then:
+#   docker login                      # the repo is private: use a read-only access token
+#   docker compose -f docker-compose.prod.yml up -d
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: online_shop_spring
+    volumes:
+      - mysql-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  app:
+    image: ion21/online-shop-cloud-spring-api:${APP_IMAGE_TAG:-latest}
+    pull_policy: always
+    restart: unless-stopped
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SERVER_PORT: ${APP_PORT:-8082}
+      DB_URL: jdbc:mysql://mysql:3306/online_shop_spring?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      DB_USERNAME: root
+      DB_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      APP_SECURITY_JWT_SECRET: ${APP_SECURITY_JWT_SECRET:?Set APP_SECURITY_JWT_SECRET in .env}
+      MCP_API_TOKEN: ${MCP_API_TOKEN:?Set MCP_API_TOKEN in .env}
+      SHOW_SQL: "false"
+    ports:
+      - "${APP_PORT:-8082}:${APP_PORT:-8082}"
+
+volumes:
+  mysql-data:

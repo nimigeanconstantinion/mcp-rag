@@ -4,14 +4,14 @@
       "type": "http",
       "url": "http://localhost:8082/mcp",
       "headers": {
-        "Authorization": "Bearer ${MCP_API_TOKEN:-}"
+        "Authorization": "Bearer ${SHOP_MCP_TOKEN:-}"
       }
     },
-    "shop": {
+    "shop-icode": {
       "type": "http",
-      "url": "http://localhost:8082/mcp",
+      "url": "http://icode.mywire.org:8082/mcp",
       "headers": {
-         "Authorization": "Bearer ${SHOP_MCP_TOKEN}" 
+        "Authorization": "Bearer ${SHOP_ICODE_MCP_TOKEN:-}"
       }
     }
   }

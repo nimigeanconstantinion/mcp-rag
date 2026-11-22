@@ -1,6 +1,5 @@
 package mycode.onlineshopspring.mcp;
 
-import mycode.onlineshopspring.customer.dto.CustomerResponse;
 import mycode.onlineshopspring.customer.service.UserQuerryService;
 import mycode.onlineshopspring.mcp.dtos.OrdersView;
 import mycode.onlineshopspring.mcp.dtos.ProductView;
@@ -46,7 +45,7 @@ public class ShopTools {
             description = "Returns the orders by status  (PENDING, SHIPPED, DELIVERED, CANCELLED).",
             annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
     public List<OrdersResponse> byStatus(
-            @McpToolParam(description = "PENDING, SHIPPED, ...",
+            @McpToolParam(description = "PENDING, SHIPPED, DELIVERED, CANCELLED",
             required = true) String status,
             @McpToolParam(description = "The shipment id",
                                                required = false) UUID shipmentId) {
@@ -54,23 +53,15 @@ public class ShopTools {
 
     }
 
-    @McpTool(name = "customers_by_name",
-            description = "Returns customenrs by name.",
+    @McpTool(name = "find_customer",
+            description = "Returns Customers by Name nu si comenzile. Daca numele este gol , intoarce raspunsul nu ai introdus numele clientului. Nu tii cont de 
+            majuscule minuscule. numele poate fi partial si returnezi clientii in ordine descrescatoare a potrivirii",
             annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
-    public List<CustomerResponse> customerbyName(
-            @McpToolParam(description = "Part of Name, ...",
-                    required = true) String name) {
-        return userQuerryService.searchCustomers(name);
-
-    }
-
-    @McpTool(name = "get_order_by_id",
-            description = "Returns oder by id.",
-            annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
-    public OrdersResponse customerbyName(
-            @McpToolParam(description = "order ID, ...",
-                    required = true) UUID id) {
-        return ordersQuerryService.findOrderById(id);
+    public List<CustomerResponse> fimdCustomerByName(
+            @McpToolParam(description = "Name of Customer. Ex. Daniel",
+            required = true) String name) {
+                
+             List<CustomerResponse> lista=UserQuerryService.
 
     }
 
