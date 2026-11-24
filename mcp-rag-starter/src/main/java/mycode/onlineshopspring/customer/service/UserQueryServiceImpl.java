@@ -8,6 +8,7 @@ import mycode.onlineshopspring.auth.customer.Customer;
 import mycode.onlineshopspring.auth.customer.CustomerRepository;
 import mycode.onlineshopspring.exceptions.CustomerDoesntExistException;
 import mycode.onlineshopspring.mappers.OnlineShopMapper;
+import mycode.onlineshopspring.mcp.dto.CustomerView;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -53,7 +54,7 @@ public class UserQueryServiceImpl implements UserQuerryService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<CustomerResponse> searchCustomersByName(String text) {
-        return mapper.mapCustomerListToResponseList(customerRepository.search(text.trim()));
+    public List<CustomerView> searchCustomers(String text) {
+        return customerRepository.search(text).stream().map(c->CustomerView.from(mapper.mapCustomerToCustomerResponse(c))).toList();
     }
 }

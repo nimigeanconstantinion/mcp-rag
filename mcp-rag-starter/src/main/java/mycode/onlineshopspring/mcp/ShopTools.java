@@ -2,6 +2,8 @@ package mycode.onlineshopspring.mcp;
 
 import mycode.onlineshopspring.customer.dto.CustomerResponse;
 import mycode.onlineshopspring.customer.service.UserQuerryService;
+import mycode.onlineshopspring.mcp.dto.CustomerView;
+import mycode.onlineshopspring.mcp.dto.OrderView;
 import mycode.onlineshopspring.mcp.dtos.OrdersView;
 import mycode.onlineshopspring.mcp.dtos.ProductView;
 import mycode.onlineshopspring.orders.dto.OrdersResponse;
@@ -35,10 +37,13 @@ public class ShopTools {
     }
 
     @McpTool(name = "customer_orders",
-            description = "Returns the orders of the customer with the given email address, newest first. Each order has its id, date, status (PENDING, SHIPPED, DELIVERED, CANCELLED), amount in lei, shipping address and the ordered products (sku, name, quantity, unit price in lei). Fails if no customer has that email.",
+            description = "comenzile clientului, cele mai noi\n" +
+                    "primele: orderId, orderDate,\n" +
+                    "daysSinceOrder, status, totalLei, lines",
             annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
     public OrdersView customerOrders(
-            @McpToolParam(description = "Email address of the customer, e.g. ana.pop@example.com", required = true) String email) {
+            @McpToolParam(description = "String email : e-mailul, așa cum îl\n" +
+                    "dă  find_customers", required = true) String email) {
         return OrdersView.from(userQuerryService.findCustomerByEmail(email.trim()));
     }
 
@@ -54,14 +59,29 @@ public class ShopTools {
 
     }
 
-    @McpTool(name = "find_customer_by_name",
-            description = "Returns Customers by Name nu si comenzile. Daca numele este gol , intoarce raspunsul nu ai introdus numele clientului. Nu tii cont de majuscule minuscule. numele poate fi partial si returnezi clientii in ordine descrescatoare a potrivirii",
+    @McpTool(name = "get_order",
+            description = "o comandă după id, cu aceleași\n" +
+                    "câmpuri",
             annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
-    public List<CustomerResponse> fimdCustomerByName(
-            @McpToolParam(description = "Name of Customer. Ex. Daniel",
+    public OrderView getOrder(
+            @McpToolParam(description = "UUID orderId : id-ul, așa cum îl dă customer_orders"
+                    ,required = false) UUID shipmentId) {
+        return OrderView.from(ordersQuerryService.findOrderById(shipmentId));
+
+    }
+
+    @McpTool(name = "find_customers",
+            description = "caută după e-mail sau parte din nume;\n" +
+                    "întoarce o listă (goală dacă nu\n" +
+                    "găsește) cu nume, e-mail, telefon, țară,\n" +
+                    "adresă, număr de comenzi",
+            annotations = @McpTool.McpAnnotations(readOnlyHint = true, destructiveHint = false, idempotentHint = true, openWorldHint = false))
+    public List<CustomerView> fimdCustomers(
+            @McpToolParam(description = "un e-mail sau o parte\n" +
+                    "din numele complet",
             required = true) String name) {
                 
-             return userQuerryService.searchCustomersByName(name);
+             return userQuerryService.searchCustomers(name);
 
     }
 

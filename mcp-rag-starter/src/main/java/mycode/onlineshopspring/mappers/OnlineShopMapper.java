@@ -3,6 +3,7 @@ package mycode.onlineshopspring.mappers;
 import mycode.onlineshopspring.auth.customer.Customer;
 import mycode.onlineshopspring.customer.dto.CustomerDto;
 import mycode.onlineshopspring.customer.dto.CustomerResponse;
+import mycode.onlineshopspring.mcp.dto.CustomerView;
 import mycode.onlineshopspring.orderDetails.dto.OrderDetailsDto;
 import mycode.onlineshopspring.orderDetails.dto.OrderDetailsResponse;
 import mycode.onlineshopspring.orderDetails.models.OrderDetails;
@@ -113,6 +114,8 @@ public class OnlineShopMapper {
         String email = e.getUser() != null ? nvl(e.getUser().getEmail()) : "";
         return new CustomerResponse(e.getId(), email, nvl(e.getFullName()), nvl(e.getBillingAddress()), nvl(e.getDefaultShippingAddress()), nvl(e.getCountry()), nvl(e.getPhone()), orderSet);
     }
+
+
     public List<CustomerResponse> mapCustomerListToResponseList(List<Customer> list) {
         if (list == null) return List.of();
         return list.stream().map(this::mapCustomerToCustomerResponse).toList();
@@ -127,4 +130,6 @@ public class OnlineShopMapper {
         e.setPhone(trim(dto.phone()));
         return e;
     }
+
+
 }
