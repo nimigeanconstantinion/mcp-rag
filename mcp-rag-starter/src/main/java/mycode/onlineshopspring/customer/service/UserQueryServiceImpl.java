@@ -53,7 +53,7 @@ public class UserQueryServiceImpl implements UserQuerryService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<CustomerResponse> searchCustomers(String text) {
+    public List<CustomerResponse> searchCustomersByName(String text) {
         return mapper.mapCustomerListToResponseList(customerRepository.search(text.trim()));
     }
 }

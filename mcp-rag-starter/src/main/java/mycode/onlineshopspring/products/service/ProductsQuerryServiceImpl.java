@@ -1,4 +1,4 @@
-capackage mycode.onlineshopspring.products.service;
+package mycode.onlineshopspring.products.service;
 
 import lombok.RequiredArgsConstructor;
 import mycode.onlineshopspring.common.pagination.PaginationUtils;

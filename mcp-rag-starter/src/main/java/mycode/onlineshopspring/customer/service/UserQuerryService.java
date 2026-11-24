@@ -10,6 +10,6 @@ public interface UserQuerryService {
     CustomerListResponse findAllCustomers(int page, int size);
     CustomerResponse findCustomerById(UUID id);
     CustomerResponse findCustomerByEmail(String email);
-    List<CustomerResponse> searchCustomers(String text);
+    List<CustomerResponse> searchCustomersByName(String text);
     
 }
