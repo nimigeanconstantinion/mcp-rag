@@ -33,9 +33,6 @@ spring:
         version: ${MCP_SERVER_VERSION:0.0.1}
 
 app:
-  mcp:
-    # Static token for /mcp (header 'Authorization: Bearer <token>'). Empty = /mcp is open.
-    api-token: ${MCP_API_TOKEN:}
   seed:
     enabled: ${SEED_ENABLED:true}
     demo-data: ${SEED_DEMO_DATA:true}

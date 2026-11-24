@@ -2,17 +2,7 @@
   "mcpServers": {
     "shop": {
       "type": "http",
-      "url": "http://localhost:8082/mcp",
-      "headers": {
-        "Authorization": "Bearer ${SHOP_MCP_TOKEN:-}"
-      }
-    },
-    "shop-icode": {
-      "type": "http",
-      "url": "http://icode.mywire.org:8082/mcp",
-      "headers": {
-        "Authorization": "Bearer ${SHOP_ICODE_MCP_TOKEN:-}"
-      }
+      "url": "http://localhost:8082/mcp"
     }
   }
 }
